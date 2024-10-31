@@ -9,6 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@Table(name = "Orders")
 public class Order {
 
     @Id
@@ -16,9 +17,11 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
+    @JoinColumn(name = "user_id_user_id")
     private User userId;
 
     @ManyToOne
+    @JoinColumn(name = "product_id_product_id")
     private Product productId;
     private int quantity;
     private Date orderDate;
