@@ -15,9 +15,8 @@ import lombok.*;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY, content = JsonInclude.Include.NON_NULL)
-public class ProductDto {
+public class UpdateProductDto {
 
-    private Long productId;
     private String description;
     private String brand;
     private String category;

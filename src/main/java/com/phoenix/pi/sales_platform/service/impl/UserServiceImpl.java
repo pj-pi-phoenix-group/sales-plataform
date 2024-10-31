@@ -2,7 +2,7 @@ package com.phoenix.pi.sales_platform.service.impl;
 
 import com.phoenix.pi.sales_platform.dto.UserDto;
 import com.phoenix.pi.sales_platform.mappers.UserMapper;
-import com.phoenix.pi.sales_platform.model.User;
+import com.phoenix.pi.sales_platform.model.entity.User;
 import com.phoenix.pi.sales_platform.repository.UserRepository;
 import com.phoenix.pi.sales_platform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

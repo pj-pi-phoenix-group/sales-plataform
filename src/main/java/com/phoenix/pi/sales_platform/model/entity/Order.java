@@ -1,4 +1,4 @@
-package com.phoenix.pi.sales_platform.model;
+package com.phoenix.pi.sales_platform.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

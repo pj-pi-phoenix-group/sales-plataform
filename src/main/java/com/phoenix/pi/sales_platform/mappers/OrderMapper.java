@@ -1,7 +1,7 @@
 package com.phoenix.pi.sales_platform.mappers;
 
 import com.phoenix.pi.sales_platform.dto.OrderDto;
-import com.phoenix.pi.sales_platform.model.Order;
+import com.phoenix.pi.sales_platform.model.entity.Order;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -2,8 +2,9 @@ package com.phoenix.pi.sales_platform.service.impl;
 
 
 import com.phoenix.pi.sales_platform.dto.ProductDto;
+import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 import com.phoenix.pi.sales_platform.mappers.ProductMapper;
-import com.phoenix.pi.sales_platform.model.Product;
+import com.phoenix.pi.sales_platform.model.entity.Product;
 import com.phoenix.pi.sales_platform.repository.ProductRepository;
 import com.phoenix.pi.sales_platform.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class ProductServiceImpl implements ProductService {
         Product product = productMapper.toEntity(productDto);
         Product savedProduct = productRepository.save(product);
         return productMapper.toDto(savedProduct);
+    }
+
+    @Override
+    public ProductDto updateProduct(Long id, UpdateProductDto updateProductDto) {
+        return null;
     }
 }

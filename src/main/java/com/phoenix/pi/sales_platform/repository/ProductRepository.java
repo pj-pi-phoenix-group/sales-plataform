@@ -1,7 +1,7 @@
 package com.phoenix.pi.sales_platform.repository;
 
 
-import com.phoenix.pi.sales_platform.model.Product;
+import com.phoenix.pi.sales_platform.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
