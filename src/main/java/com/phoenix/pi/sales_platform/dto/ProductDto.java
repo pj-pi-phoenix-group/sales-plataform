@@ -8,7 +8,6 @@ import com.phoenix.pi.sales_platform.model.entity.enums.StatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
-
 public class ProductDto {
 
     private Long productId;

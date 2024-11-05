@@ -2,6 +2,7 @@ package com.phoenix.pi.sales_platform.service.impl;
 
 
 import com.phoenix.pi.sales_platform.dto.ProductDto;
+import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 import com.phoenix.pi.sales_platform.mappers.ProductMapper;
 import com.phoenix.pi.sales_platform.model.entity.Product;
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto saveProduct(ProductDto productDto) {
+    public ProductDto saveProduct(ProductDtoRequest productDto) {
         Product product = productMapper.toEntity(productDto);
         Product savedProduct = productRepository.save(product);
         return productMapper.toDto(savedProduct);

@@ -2,6 +2,7 @@ package com.phoenix.pi.sales_platform.controller;
 
 
 import com.phoenix.pi.sales_platform.dto.ProductDto;
+import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 import com.phoenix.pi.sales_platform.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto product) {
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDtoRequest product) {
         ProductDto createdProduct = service.saveProduct(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
