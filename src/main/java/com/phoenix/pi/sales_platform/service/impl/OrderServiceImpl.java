@@ -4,6 +4,7 @@ import com.phoenix.pi.sales_platform.dto.OrderDto;
 import com.phoenix.pi.sales_platform.mappers.OrderMapper;
 import com.phoenix.pi.sales_platform.model.entity.Order;
 import com.phoenix.pi.sales_platform.repository.OrderRepository;
+import com.phoenix.pi.sales_platform.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
