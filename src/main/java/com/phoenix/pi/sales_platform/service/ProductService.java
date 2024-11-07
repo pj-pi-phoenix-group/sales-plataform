@@ -7,12 +7,9 @@ import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 import java.util.List;
 
 public interface ProductService {
-
-    void deleteProduct();
-
     List<ProductDto> getAllProducts();
-
-    ProductDto saveProduct(ProductDtoRequest product);
-
+    ProductDto saveProduct(ProductDtoRequest productDto);
     ProductDto updateProduct(Long id, UpdateProductDto updateProductDto);
+    void deleteProduct(Long id);
+
 }

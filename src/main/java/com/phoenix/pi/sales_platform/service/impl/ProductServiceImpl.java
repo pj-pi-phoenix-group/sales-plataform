@@ -4,6 +4,7 @@ package com.phoenix.pi.sales_platform.service.impl;
 import com.phoenix.pi.sales_platform.dto.ProductDto;
 import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
+import com.phoenix.pi.sales_platform.exception.ProductException;
 import com.phoenix.pi.sales_platform.mappers.ProductMapper;
 import com.phoenix.pi.sales_platform.model.entity.Product;
 import com.phoenix.pi.sales_platform.repository.ProductRepository;
@@ -17,13 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
     private ProductMapper productMapper;
 
-    @Override
-    public void deleteProduct() {
+    public ProductServiceImpl(@Autowired(required=true) ProductRepository productRepository,@Autowired(required=true) ProductMapper productMapper) {
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
     }
 
     @Override
@@ -43,6 +43,46 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto updateProduct(Long id, UpdateProductDto updateProductDto) {
-        return null;
+        // Check if the product exists
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with ID: " + id));
+
+        // Update the fields that are provided in UpdateProductDto
+        if (updateProductDto.getDescription() != null) {
+            existingProduct.setDescription(updateProductDto.getDescription());
+        }
+        if (updateProductDto.getBrand() != null) {
+            existingProduct.setBrand(updateProductDto.getBrand());
+        }
+        if (updateProductDto.getCategory() != null) {
+            existingProduct.setCategory(updateProductDto.getCategory());
+        }
+        if (updateProductDto.getQuantity() != null) {
+            existingProduct.setQuantity(updateProductDto.getQuantity());
+        }
+        if (updateProductDto.getPrice() != null) {
+            existingProduct.setPrice(updateProductDto.getPrice());
+        }
+        if (updateProductDto.getStatus() != null) {
+            existingProduct.setStatus(updateProductDto.getStatus());
+        }
+
+        // Save the updated product
+        Product updatedProduct = productRepository.save(existingProduct);
+
+        // Return the updated product as a DTO
+        return productMapper.toDto(updatedProduct);
     }
+
+
+    @Override
+    public void deleteProduct(Long id) {
+        // Check if the product exists
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with ID: " + id));
+
+        // Delete the product
+        productRepository.delete(product);
+    }
+
 }
