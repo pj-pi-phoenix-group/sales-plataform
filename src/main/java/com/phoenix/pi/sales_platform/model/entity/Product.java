@@ -8,10 +8,44 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
     public Product() {
     }
+
+    public Product(Long productId, String description, String brand, String category, int quantity, double price, StatusEnum status) {
+        this.productId = productId;
+        this.description = description;
+        this.brand = brand;
+        this.category = category;
+        this.quantity = quantity;
+        this.price = price;
+        this.status = status;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
+    private Long productId;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    @Column(name = "price")
+    private double price;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusEnum status;
 
     public Long getProductId() {
         return productId;
@@ -68,23 +102,4 @@ public class Product {
     public void setStatus(StatusEnum status) {
         this.status = status;
     }
-
-    public Product(Long productId, String description, String brand, String category, int quantity, double price, StatusEnum status) {
-        this.productId = productId;
-        this.description = description;
-        this.brand = brand;
-        this.category = category;
-        this.quantity = quantity;
-        this.price = price;
-        this.status = status;
-    }
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
-    private String description;
-    private String brand;
-    private String category;
-    private int quantity;
-    private double price;
-    private StatusEnum status;
 }
