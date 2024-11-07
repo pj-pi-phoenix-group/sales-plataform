@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto saveProduct(ProductDtoRequest productDto) {
         Product product = productMapper.toEntity(productDto);
+
+        if (Objects.isNull(productDto)){
+            throw new ProductException("It cannot be null");
+        }
         Product savedProduct = productRepository.save(product);
         return productMapper.toDto(savedProduct);
     }

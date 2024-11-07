@@ -7,6 +7,7 @@ import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 import com.phoenix.pi.sales_platform.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class ProductController {
 
     @PostMapping
     @Operation(summary = "Create a new product", description = "Create a new product by providing its details")
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDtoRequest product) {
+    public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDtoRequest product) {
         ProductDto createdProduct = service.saveProduct(product);
 
         if(!Objects.nonNull(product)){

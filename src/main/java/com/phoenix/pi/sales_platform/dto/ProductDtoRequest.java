@@ -1,18 +1,25 @@
 package com.phoenix.pi.sales_platform.dto;
 
 import com.phoenix.pi.sales_platform.model.entity.enums.StatusEnum;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
+@Valid
 public class ProductDtoRequest {
+    @NotNull
     private String description;
-
+    @NotNull
     private String brand;
-
+    @NotNull
     private String category;
-
+    @NotNull
+    @PositiveOrZero
     private int quantity;
-
+    @PositiveOrZero
     private double price;
 
+    @NotNull
     private StatusEnum status;
 
     public String getDescription() {
