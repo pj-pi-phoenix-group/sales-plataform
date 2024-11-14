@@ -4,7 +4,6 @@ package com.phoenix.pi.sales_platform.controller;
 import com.phoenix.pi.sales_platform.dto.ProductDto;
 import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
-import com.phoenix.pi.sales_platform.model.entity.Product;
 import com.phoenix.pi.sales_platform.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -46,17 +45,17 @@ public class ProductController {
     public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDtoRequest product) {
         ProductDto createdProduct = service.saveProduct(product);
 
-        if(!Objects.nonNull(product)){
+        if (!Objects.nonNull(product)) {
             return ResponseEntity.unprocessableEntity().build();
         }
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
-    @PutMapping ("/{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Update an existing product"
             , description = "Update product details by providing the product ID and updated information")
     public ResponseEntity<ProductDto> updateProductById(@PathVariable Long id
-            , @RequestBody UpdateProductDto updateProductDto){
+            , @RequestBody UpdateProductDto updateProductDto) {
         ProductDto updatedProduct = service.updateProduct(id, updateProductDto);
 
         if (updatedProduct == null) {

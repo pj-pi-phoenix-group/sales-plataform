@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ProductException("Product not found with ID: " + id));
 
         // Delete the product
-        productRepository.delete(product);
+        this.productRepository.delete(product);
     }
 
     @Override
