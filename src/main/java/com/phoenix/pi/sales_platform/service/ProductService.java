@@ -5,6 +5,7 @@ import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
     List<ProductDto> getAllProducts();
@@ -12,4 +13,5 @@ public interface ProductService {
     ProductDto updateProduct(Long id, UpdateProductDto updateProductDto);
     void deleteProduct(Long id);
 
+    Optional<ProductDto> getProductById(Long id);
 }

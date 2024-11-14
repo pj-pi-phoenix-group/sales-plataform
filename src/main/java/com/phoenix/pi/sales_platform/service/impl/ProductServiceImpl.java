@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -88,6 +89,16 @@ public class ProductServiceImpl implements ProductService {
 
         // Delete the product
         productRepository.delete(product);
+    }
+
+    @Override
+    public Optional<ProductDto> getProductById(Long id) {
+
+        // Check if the product exists
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ProductException("Product not found with ID: " + id));
+
+        return Optional.ofNullable(productMapper.toDto(existingProduct));
     }
 
 }

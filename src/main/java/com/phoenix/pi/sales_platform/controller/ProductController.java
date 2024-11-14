@@ -4,6 +4,7 @@ package com.phoenix.pi.sales_platform.controller;
 import com.phoenix.pi.sales_platform.dto.ProductDto;
 import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
+import com.phoenix.pi.sales_platform.model.entity.Product;
 import com.phoenix.pi.sales_platform.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/product")
@@ -29,6 +31,14 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         List<ProductDto> products = service.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a product by ID", description = "Retrieve a product by its ID")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        Optional<ProductDto> product = service.getProductById(id);
+
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
