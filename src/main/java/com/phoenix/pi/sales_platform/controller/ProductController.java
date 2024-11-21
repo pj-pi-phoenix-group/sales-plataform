@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/product")
@@ -31,22 +32,30 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a product by ID", description = "Retrieve a product by its ID")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        Optional<ProductDto> product = service.getProductById(id);
+
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     @Operation(summary = "Create a new product", description = "Create a new product by providing its details")
     public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDtoRequest product) {
         ProductDto createdProduct = service.saveProduct(product);
 
-        if(!Objects.nonNull(product)){
+        if (!Objects.nonNull(product)) {
             return ResponseEntity.unprocessableEntity().build();
         }
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
-    @PutMapping ("/{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Update an existing product"
             , description = "Update product details by providing the product ID and updated information")
     public ResponseEntity<ProductDto> updateProductById(@PathVariable Long id
-            , @RequestBody UpdateProductDto updateProductDto){
+            , @RequestBody UpdateProductDto updateProductDto) {
         ProductDto updatedProduct = service.updateProduct(id, updateProductDto);
 
         if (updatedProduct == null) {

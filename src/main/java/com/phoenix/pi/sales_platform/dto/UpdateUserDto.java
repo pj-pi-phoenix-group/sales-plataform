@@ -1,25 +1,10 @@
 package com.phoenix.pi.sales_platform.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import java.util.UUID;
-
-public class UserDto {
-
-    private Long userId;
+public class UpdateUserDto {
     private String name;
     private String number;
     private String email;
     private String password;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public String getName() {
         return name;
