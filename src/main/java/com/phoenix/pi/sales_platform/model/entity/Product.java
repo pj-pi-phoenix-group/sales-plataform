@@ -1,26 +1,34 @@
 package com.phoenix.pi.sales_platform.model.entity;
 
-
 import com.phoenix.pi.sales_platform.model.entity.enums.StatusEnum;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "product")
 public class Product {
-    public Product() {
-    }
-
-    public Product(Long productId, String description, String brand, String category, int quantity, double price, StatusEnum status) {
-        this.productId = productId;
-        this.description = description;
-        this.brand = brand;
-        this.category = category;
-        this.quantity = quantity;
-        this.price = price;
-        this.status = status;
+    
+    
+    
+        public Product() {
+        }
+    
+        public Product(Long productId, String description, String brand, String category, int quantity, double price, StatusEnum status, Long userId) {
+            this.productId = productId;
+            this.description = description;
+            this.brand = brand;
+            this.category = category;
+            this.quantity = quantity;
+            this.price = price;
+            this.status = status;
+            this.userId = userId;
     }
 
     @Id
@@ -46,6 +54,20 @@ public class Product {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusEnum status;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+
+    // Getters and Setters
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Long getProductId() {
         return productId;
@@ -102,4 +124,5 @@ public class Product {
     public void setStatus(StatusEnum status) {
         this.status = status;
     }
+    
 }

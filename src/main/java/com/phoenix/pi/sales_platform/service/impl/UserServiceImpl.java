@@ -1,22 +1,22 @@
 package com.phoenix.pi.sales_platform.service.impl;
 
-import com.phoenix.pi.sales_platform.dto.UpdateUserDto;
-import com.phoenix.pi.sales_platform.dto.UserDtoRequest;
-import com.phoenix.pi.sales_platform.dto.UserDto;
-import com.phoenix.pi.sales_platform.exception.ProductException;
-import com.phoenix.pi.sales_platform.exception.UserException;
-import com.phoenix.pi.sales_platform.mappers.UserMapper;
-import com.phoenix.pi.sales_platform.model.entity.Product;
-import com.phoenix.pi.sales_platform.model.entity.User;
-import com.phoenix.pi.sales_platform.repository.UserRepository;
-import com.phoenix.pi.sales_platform.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.phoenix.pi.sales_platform.dto.UpdateUserDto;
+import com.phoenix.pi.sales_platform.dto.UserDto;
+import com.phoenix.pi.sales_platform.dto.UserDtoRequest;
+import com.phoenix.pi.sales_platform.dto.UserLoginDto;
+import com.phoenix.pi.sales_platform.exception.UserException;
+import com.phoenix.pi.sales_platform.mappers.UserMapper;
+import com.phoenix.pi.sales_platform.model.entity.User;
+import com.phoenix.pi.sales_platform.repository.UserRepository;
+import com.phoenix.pi.sales_platform.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -85,5 +85,16 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UserException("User not found with ID: " + id));
 
         this.userRepository.delete(existingUser);
+    }
+
+    @Override
+    public Optional<UserDto> loginUser(UserLoginDto userLoginDto) {
+        User user = userRepository.findByEmail(userLoginDto.getEmail())
+                .orElseThrow(() -> new UserException("User not found with email: " + userLoginDto.getEmail()));
+
+        if (user.getPassword().equals(userLoginDto.getPassword())){
+            return Optional.ofNullable(userMapper.toDto(user));
+        }
+        return Optional.empty();
     }
 }

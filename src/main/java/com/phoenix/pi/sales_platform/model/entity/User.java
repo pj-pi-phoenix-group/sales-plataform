@@ -1,25 +1,37 @@
 package com.phoenix.pi.sales_platform.model.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
-
 import java.util.Objects;
 
-@Table(name = "users")
-@Entity(name = "users")
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users") // Nome da tabela no banco de dados
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id") // Nome da coluna no banco
     private Long userId;
+
+    @Column(name = "name", nullable = false, length = 100) // Nome da coluna "name"
     private String name;
+
+    @Column(name = "number", length = 15) // Exemplo de número de telefone (opcional)
     private String number;
+
+    @Column(name = "email", nullable = false, unique = true) // E-mail único e obrigatório
     private String email;
+
+    @Column(name = "password", nullable = false) // Senha obrigatória
     private String password;
 
-    public User() {
-    }
+    // Construtores
+    public User() {}
 
     public User(Long userId, String name, String number, String email, String password) {
         this.userId = userId;
@@ -29,6 +41,7 @@ public class User {
         this.password = password;
     }
 
+    // Getters e Setters
     public Long getUserId() {
         return userId;
     }
@@ -69,19 +82,17 @@ public class User {
         this.password = password;
     }
 
+    // equals e hashCode baseados no userId
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUserId() != null && Objects.equals(getUserId(), user.getUserId());
+        return Objects.equals(userId, user.userId);
     }
 
     @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    public int hashCode() {
+        return Objects.hash(userId);
     }
 }
