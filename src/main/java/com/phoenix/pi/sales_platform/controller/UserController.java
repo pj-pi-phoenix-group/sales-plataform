@@ -1,23 +1,45 @@
 package com.phoenix.pi.sales_platform.controller;
 
-import com.phoenix.pi.sales_platform.dto.UpdateUserDto;
-import com.phoenix.pi.sales_platform.dto.UserDto;
-import com.phoenix.pi.sales_platform.dto.UserDtoRequest;
-import com.phoenix.pi.sales_platform.service.UserService;
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import com.phoenix.pi.sales_platform.dto.UpdateUserDto;
+import com.phoenix.pi.sales_platform.dto.UserDto;
+import com.phoenix.pi.sales_platform.dto.UserDtoRequest;
+import com.phoenix.pi.sales_platform.dto.UserLoginDto;
+import com.phoenix.pi.sales_platform.service.UserService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
+
+    @PostMapping("/login")
+    @Operation(summary = "Login user", description = "Authenticate user with provided credentials")
+    public ResponseEntity<Void> loginUser(@RequestBody @Valid UserLoginDto userLoginDto) {
+        Optional<UserDto> authenticatedUser = userService.loginUser(userLoginDto);
+
+        if (authenticatedUser.isPresent()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 
     @Autowired
     private UserService userService;
