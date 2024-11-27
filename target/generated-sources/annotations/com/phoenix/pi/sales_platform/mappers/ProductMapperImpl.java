@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-27T18:11:32-0300",
-    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
+    date = "2024-11-27T19:23:14-0300",
+    comments = "version: 1.6.0.Beta1, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class ProductMapperImpl implements ProductMapper {
@@ -22,13 +22,16 @@ public class ProductMapperImpl implements ProductMapper {
 
         ProductDto productDto = new ProductDto();
 
-        productDto.setProductId( product.getProductId() );
-        productDto.setDescription( product.getDescription() );
         productDto.setBrand( product.getBrand() );
         productDto.setCategory( product.getCategory() );
-        productDto.setQuantity( product.getQuantity() );
+        productDto.setDescription( product.getDescription() );
         productDto.setPrice( product.getPrice() );
+        productDto.setProductId( product.getProductId() );
+        productDto.setQuantity( product.getQuantity() );
         productDto.setStatus( product.getStatus() );
+        if ( product.getUserId() != null ) {
+            productDto.setUserId( product.getUserId() );
+        }
 
         return productDto;
     }
@@ -41,11 +44,11 @@ public class ProductMapperImpl implements ProductMapper {
 
         Product product = new Product();
 
-        product.setDescription( productDto.getDescription() );
         product.setBrand( productDto.getBrand() );
         product.setCategory( productDto.getCategory() );
-        product.setQuantity( productDto.getQuantity() );
+        product.setDescription( productDto.getDescription() );
         product.setPrice( productDto.getPrice() );
+        product.setQuantity( productDto.getQuantity() );
         product.setStatus( productDto.getStatus() );
 
         return product;

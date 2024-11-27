@@ -1,12 +1,6 @@
 package com.phoenix.pi.sales_platform.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.phoenix.pi.sales_platform.model.entity.enums.StatusEnum;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 public class ProductDto {
 
@@ -23,6 +17,16 @@ public class ProductDto {
     private double price;
 
     private StatusEnum status;
+
+    private Long userId;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
 
 

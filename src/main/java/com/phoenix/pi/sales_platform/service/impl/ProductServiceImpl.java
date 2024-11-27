@@ -1,6 +1,14 @@
 package com.phoenix.pi.sales_platform.service.impl;
 
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.phoenix.pi.sales_platform.dto.ProductDto;
 import com.phoenix.pi.sales_platform.dto.ProductDtoRequest;
 import com.phoenix.pi.sales_platform.dto.UpdateProductDto;
@@ -9,13 +17,6 @@ import com.phoenix.pi.sales_platform.mappers.ProductMapper;
 import com.phoenix.pi.sales_platform.model.entity.Product;
 import com.phoenix.pi.sales_platform.repository.ProductRepository;
 import com.phoenix.pi.sales_platform.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -26,6 +27,14 @@ public class ProductServiceImpl implements ProductService {
     public ProductServiceImpl(@Autowired(required=true) ProductRepository productRepository,@Autowired(required=true) ProductMapper productMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+    }
+
+    @Override
+    public List<ProductDto> getAllProductsByUserId(Long userId) {
+        List<Product> products = productRepository.findAllByUserId(userId);
+        return products.stream()
+                .map(productMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override

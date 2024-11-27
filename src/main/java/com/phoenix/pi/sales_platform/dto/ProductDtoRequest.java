@@ -1,6 +1,7 @@
 package com.phoenix.pi.sales_platform.dto;
 
 import com.phoenix.pi.sales_platform.model.entity.enums.StatusEnum;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -18,6 +19,8 @@ public class ProductDtoRequest {
     private int quantity;
     @PositiveOrZero
     private double price;
+
+
 
     @NotNull
     private StatusEnum status;
