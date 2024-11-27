@@ -33,7 +33,7 @@ public class ProductController {
 
     @Autowired
     private ProductService service;
-    @GetMapping("/products/{userId}")
+    @GetMapping("/user/{userId}")
     @Operation(summary = "Get products by user ID", description = "Retrieve a list of products by the user ID")
     public ResponseEntity<List<ProductDto>> getAllProductsByUserId(@PathVariable Long userId) {
         List<ProductDto> products = service.getAllProductsByUserId(userId);

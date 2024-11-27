@@ -25,6 +25,17 @@ public class ProductDtoRequest {
     @NotNull
     private StatusEnum status;
 
+    @NotNull
+    private Long userId;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
     public String getDescription() {
         return description;
     }

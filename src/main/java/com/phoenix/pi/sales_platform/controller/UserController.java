@@ -34,11 +34,13 @@ public class UserController {
     public ResponseEntity<Void> loginUser(@RequestBody @Valid UserLoginDto userLoginDto) {
         Optional<UserDto> authenticatedUser = userService.loginUser(userLoginDto);
 
-        if (authenticatedUser.isPresent()) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+    if (authenticatedUser.isPresent()) {
+        UserDto userWithoutPassword = authenticatedUser.get();
+        userWithoutPassword.setPassword(null);
+        return new ResponseEntity(userWithoutPassword, HttpStatus.OK);
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
     }
 
     @Autowired
