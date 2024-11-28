@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-27T19:28:33-0300",
+    date = "2024-11-28T10:07:20-0300",
     comments = "version: 1.6.0.Beta1, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
@@ -22,16 +22,16 @@ public class ProductMapperImpl implements ProductMapper {
 
         ProductDto productDto = new ProductDto();
 
-        productDto.setBrand( product.getBrand() );
-        productDto.setCategory( product.getCategory() );
-        productDto.setDescription( product.getDescription() );
-        productDto.setPrice( product.getPrice() );
-        productDto.setProductId( product.getProductId() );
-        productDto.setQuantity( product.getQuantity() );
-        productDto.setStatus( product.getStatus() );
         if ( product.getUserId() != null ) {
             productDto.setUserId( product.getUserId() );
         }
+        productDto.setProductId( product.getProductId() );
+        productDto.setDescription( product.getDescription() );
+        productDto.setBrand( product.getBrand() );
+        productDto.setCategory( product.getCategory() );
+        productDto.setQuantity( product.getQuantity() );
+        productDto.setPrice( product.getPrice() );
+        productDto.setStatus( product.getStatus() );
 
         return productDto;
     }
@@ -44,13 +44,13 @@ public class ProductMapperImpl implements ProductMapper {
 
         Product product = new Product();
 
+        product.setUserId( productDto.getUserId() );
+        product.setDescription( productDto.getDescription() );
         product.setBrand( productDto.getBrand() );
         product.setCategory( productDto.getCategory() );
-        product.setDescription( productDto.getDescription() );
-        product.setPrice( productDto.getPrice() );
         product.setQuantity( productDto.getQuantity() );
+        product.setPrice( productDto.getPrice() );
         product.setStatus( productDto.getStatus() );
-        product.setUserId( productDto.getUserId() );
 
         return product;
     }
