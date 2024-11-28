@@ -1,4 +1,7 @@
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UserDto.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/mappers/CustomerMapper.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/CustomerDto.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/exception/CustomerException.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/exception/ProductException.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/OrderService.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/configuration/WebConfig.java
@@ -12,11 +15,14 @@
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/mappers/UserMapper.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/exception/GlobalExceptionHandler.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UpdateUserDto.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/repository/CustomerRepository.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/impl/OrderServiceImpl.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/controller/UserController.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UpdateProductDto.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/exception/UserException.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/impl/CustomerServiceImpl.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/model/entity/User.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/CustomerService.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/impl/UserServiceImpl.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/model/entity/Product.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UserDtoRequest.java
@@ -24,10 +30,14 @@
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/repository/OrderRepository.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/repository/UserRepository.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/ProductService.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/controller/Customercontroller.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UserLoginDto.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/mappers/OrderMapper.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/OrderDto.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/mappers/ProductMapper.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/UpdateCustomerDto.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/service/impl/ProductServiceImpl.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/configuration/SwaggerConfig.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/dto/CustomerDtoRequest.java
 /home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/model/entity/Order.java
+/home/dudu/sales-plataform/src/main/java/com/phoenix/pi/sales_platform/model/entity/Customer.java
